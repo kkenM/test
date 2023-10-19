@@ -1,3 +1,5 @@
 def crashYoShit():
     for x in range(1, 100):
-        print("|_|")
+        print("8====D  ")
+
+crashYoShit()
