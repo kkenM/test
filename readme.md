@@ -9,6 +9,7 @@ git clone <repository link>
 Create a branch that isn't the main branch (usually you would do this before you make changes it just copies main under a new name)
 
 git branch <new-branch-name>
+
 git checkout <new-branch-name>
 
 Adding your changes
