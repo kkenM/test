@@ -2,7 +2,11 @@
 
 # Initialize a repository (you only do this once at the start of a project to initalize the project)
 
+```
+{
 git clone <repository link>
+}
+```
 
 # After you've created some code and want to push it to the remote repositry
 
