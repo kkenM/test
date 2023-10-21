@@ -3,11 +3,11 @@ import random
 # Function to convert ASCII character to bits
 def char_to_bits(char):
     bits = bin(ord(char))[2:]  # Convert ASCII to binary and remove '0b' prefix
-    return bits.zfill(8)  # Add leading zeros to make it 8 bits long
+    return bits.zfill(7)  # Add leading zeros to make it 8 bits long
 
 # Function to generate a random 8-bit bitmask
 def generate_mask():
-    return bin(random.randint(0, 255))[2:].zfill(8)
+    return bin(random.randint(0, 31))[2:].zfill(7)
 
 # Function to apply XOR encryption and decryption
 def xor_encrypt(char, mask):
@@ -25,7 +25,7 @@ decrypted_char = xor_encrypt(chr(encrypted_char), mask)
 def cipher_message(message):
 
     protected_message = ""
-    masks = []
+    masks = ""
 
     for char in message:
         new_mask = generate_mask()
@@ -33,20 +33,19 @@ def cipher_message(message):
         encrypt_char = xor_encrypt(char, new_mask)
 
         protected_message += chr(encrypt_char)
-        masks.append(new_mask)
+        masks += new_mask + " "
 
     return protected_message, masks
 
 def decipher_message(encrypted_msg, mask_list):
 
+    mask_list = mask_list.split()
     deciphered_msg = ""
-    mask_list_idx = 0
 
-    for char in encrypted_msg:
-        decrypt_char = xor_encrypt(char, mask_list[mask_list_idx])
+    for char, mask in zip(encrypted_msg, mask_list):
+        decrypt_char = xor_encrypt(char, mask)
         char = chr(decrypt_char)
         deciphered_msg += char
-        mask_list_idx += 1
 
     return deciphered_msg
 
