@@ -236,6 +236,7 @@ class MessageClient:
                 for message in new_messages:
                     print(message)
 
+
                 #Constantly poll the file for any changes, if so immediatly update the chat
                 def pollForChanges():
                     last_updated_timestamp = os.path.getmtime("%s/msg.txt" %chat_path)
@@ -250,6 +251,7 @@ class MessageClient:
                             for message in new_messages:
                                 print(message)
                             last_updated_timestamp = current_timestamp
+
 
                 def pollForInput():
                     global exit_flag
@@ -272,9 +274,11 @@ class MessageClient:
                 input_thread = threading.Thread(target=pollForInput)
                 update_thread = threading.Thread(target=pollForChanges)
 
+
                 update_thread.start()
                 input_thread.start()
                 
+
                 update_thread.join()
                 print("Threads dead update")
                 input_thread.join()
